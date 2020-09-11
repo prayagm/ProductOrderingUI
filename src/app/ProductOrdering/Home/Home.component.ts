@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MenuComponent } from "src/app/ProductOrdering/Menu/Menu.component";
 
 @Component({
   selector: 'app-Home',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./Home.component.css']
 })
 export class HomeComponent implements OnInit {
+  @ViewChild(MenuComponent, { static: true }) menuChild: MenuComponent;
 
   constructor() { }
 

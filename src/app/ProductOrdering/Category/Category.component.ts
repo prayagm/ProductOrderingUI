@@ -18,6 +18,7 @@ import { Message } from 'primeng/components/common/api';
 import { SESSION_STORAGE, WebStorageService } from 'angular-webstorage-service';
 // import { LoggedInUser } from "src/app/HSE/Authentication/LoggedInUser";
 import { Router } from '@angular/router';
+import { MenuComponent } from "src/app/ProductOrdering/Menu/Menu.component";
 
 @Component({
   selector: 'app-Category',
@@ -25,6 +26,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./Category.component.css'],
 })
 export class CategoryComponent implements OnInit {
+  @ViewChild(MenuComponent, { static: true }) menuChild: MenuComponent;
+  
   constructor(
     private router: Router,
     private confirmationService: ConfirmationService,
