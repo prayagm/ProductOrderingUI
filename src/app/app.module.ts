@@ -11,13 +11,16 @@ import { CustomerComponent } from './ProductOrdering/Customer/Customer.component
 import { ProductComponent } from './ProductOrdering/Product/Product.component';
 import { CategoryComponent } from './ProductOrdering/Category/Category.component';
 
+import { MenuComponent } from './ProductOrdering/Menu/Menu.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     CustomerComponent,
     ProductComponent,
-    CategoryComponent
+    CategoryComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
