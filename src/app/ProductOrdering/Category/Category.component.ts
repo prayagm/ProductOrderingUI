@@ -22,6 +22,12 @@ import { MenuComponent } from 'src/app/ProductOrdering/Menu/Menu.component';
 
 declare var $: any;
 
+export class Category {
+  categoryid: number;
+  categoryname: string;
+  description: string;
+}
+
 @Component({
   selector: 'app-Category',
   templateUrl: './Category.component.html',
@@ -32,36 +38,70 @@ export class CategoryComponent implements OnInit {
   @ViewChild(MenuComponent, { static: true }) menuChild: MenuComponent;
 
   constructor(
-    // private router: Router,
+    private router: Router,
     // private confirmationService: ConfirmationService,
-    // public restApi: CategoryService,
-    // // public globalService: GlobalServiceService,
-    // private messageService: MessageService,
-    // public dialogService: DialogService,
-    // @Inject(SESSION_STORAGE) private storage: WebStorageService
-  ) {}
+    public restApi: CategoryService // public globalService: GlobalServiceService,
+  ) // private messageService: MessageService,
+  // public dialogService: DialogService,
+  // @Inject(SESSION_STORAGE) private storage: WebStorageService
+  {}
 
   CategoryList: any = [];
 
   showProgressSpinner = true;
 
-  ngOnInit() {
-    // debugger;
-    this.loadCategoryGridData()
+  category1: Category[];
 
+  category2: Category[];
+
+  selectedCategory1: Category;
+
+  selectedCategory2: Category;
+
+  gridCols: any = [];
+
+  ngOnInit() {
+    this.gridCols = [
+      { field: 'categoryname', header: 'Category Name' },
+      { field: 'description', header: 'Description' },
+    ];
+
+    this.loadCategoryGridData();
   }
 
   loadCategoryGridData() {
     this.showProgressSpinner = true;
-    
-    // this.restApi.getAllCategoryData().subscribe((data: any) => {
-    //   // this.flushData();
-    //   debugger;
-    //   this.CategoryList = [];
+    // debugger;
+    this.restApi.getAllCategoryData().subscribe((data: Category[]) => {
+      // this.flushData();
+      // debugger;
+      this.CategoryList = [];
 
-    //   this.CategoryList = data;
+      this.CategoryList = data;
 
-    //   this.showProgressSpinner = false;
-    // });
+      this.showProgressSpinner = false;
+    });
   }
+
+  // exportPdf() {
+  //   import('jspdf').then((jsPDF) => {
+  //     import('jspdf-autotable').then((x) => {
+  //       const doc = new jsPDF.default(0, 0);
+  //       doc.autoTable(this.exportColumns, this.products);
+  //       doc.save('products.pdf');
+  //     });
+  //   });
+  // }
+
+  // exportExcel() {
+  //   import('xlsx').then((xlsx) => {
+  //     const worksheet = xlsx.utils.json_to_sheet(this.products);
+  //     const workbook = { Sheets: { data: worksheet }, SheetNames: ['data'] };
+  //     const excelBuffer: any = xlsx.write(workbook, {
+  //       bookType: 'xlsx',
+  //       type: 'array',
+  //     });
+  //     this.saveAsExcelFile(excelBuffer, 'products');
+  //   });
+  // }
 }

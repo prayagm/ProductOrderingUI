@@ -7,4 +7,4 @@ export const CustomersRoute = "/customers";
 export const GetAllCustomers = "/api/Customers/GetAllCustomers";
 
 //Category APIs
-export const GetCategoryData ="";
+export const GetCategoryData ="/api/Category/categories";

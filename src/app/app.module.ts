@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 
+// import { ProgressSpinnerModule } from "primeng/progressspinner";
+
 import { HomeComponent } from './ProductOrdering/Home/Home.component';
 import { CustomerComponent } from './ProductOrdering/Customer/Customer.component';
 
@@ -25,7 +27,8 @@ import { MenuComponent } from './ProductOrdering/Menu/Menu.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    // ProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

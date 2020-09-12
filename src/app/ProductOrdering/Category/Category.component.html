@@ -2,6 +2,94 @@
   <app-Menu></app-Menu>
 </div>
 
-<div style="padding:20px">
+<div
+  class="loading-indicator"
+  style="z-index: 1500"
+  *ngIf="showProgressSpinner"
+>
+  <p-progressSpinner
+    [style]="{ width: '50px', height: '50px', 'z-index': '1500' }"
+    strokeWidth="8"
+    fill="#EEEEEE"
+    animationDuration=".5s"
+  ></p-progressSpinner>
+</div>
 
+<div style="padding-bottom: 10px"></div>
+
+<div style="padding: 20px; border: solid 1px black">
+  <p-table
+    [columns]="this.gridCols"
+    [value]="this.CategoryList"
+    [paginator]="true"
+    [rows]="10"
+    selectionMode="single"
+    [(selection)]="selectedCategory1"
+    [responsive]="true"
+    #dt
+  >
+    <ng-template pTemplate="caption">
+      <div class="ui-g ui-fluid">
+        <div class="ui-g-12">
+          <button type="button" pButton pRipple icon="pi pi-file-o" (click)="dt.exportCSV()" class="p-mr-2" pTooltip="CSV" tooltipPosition="bottom"></button>
+          <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success p-mr-2"  pTooltip="XLS" tooltipPosition="bottom"></button>
+          <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()" class="p-button-warning p-mr-2" pTooltip="PDF" tooltipPosition="bottom"></button>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th
+          *ngFor="let col of columns"
+          [pSortableColumn]="col.field"
+          style="width: 200px"
+          class="wordBreakStyle"
+        >
+          {{ col.header }}
+          <p-sortIcon
+            [field]="col.field"
+            ariaLabel="Activate to sort"
+            ariaLabelDesc="Activate to sort in descending order"
+            ariaLabelAsc="Activate to sort in ascending order"
+          >
+          </p-sortIcon>
+        </th>
+      </tr>
+      <!-- <tr>
+        <th *ngFor="let col of columns" [ngSwitch]="col.field">
+          <input
+            *ngSwitchCase="'categoryname'"
+            pInputText
+            type="text"
+            placeholder="Category Name"
+            title="Filter by Category Name"
+            (input)="dt.filter($event.target.value, col.field, 'contains')"
+          />
+          <input
+            *ngSwitchCase="'description'"
+            pInputText
+            type="text"
+            placeholder="Description"
+            title="Filter by Description"
+            (input)="dt.filter($event.target.value, col.field, 'contains')"
+          />
+        </th>
+      </tr> -->
+    </ng-template>
+
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr>
+        <td *ngFor="let col of columns" class="wordBreakStyle">
+          <!-- <span class="ui-column-title">{{ col.header }}</span>
+          {{ rowData[col.field] }} -->
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="4">No category found.</td>
+      </tr>
+    </ng-template>
+  </p-table>
 </div>

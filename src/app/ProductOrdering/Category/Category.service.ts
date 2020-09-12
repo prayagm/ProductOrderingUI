@@ -9,7 +9,7 @@ export class CategoryService {
 
   baseURL = AppConstant.BaseServiceURL;
 
-  GetCategoryRecordApiURL = this.baseURL + '/' + AppConstant.GetCategoryData;
+  GetCategoryRecordApiURL = this.baseURL + AppConstant.GetCategoryData;
 
   constructor(private http: HttpClient) {}
 
@@ -19,9 +19,14 @@ export class CategoryService {
 
     var url = this.GetCategoryRecordApiURL;
 
+    // const value = this.http.get(url, {
+    //   headers: headers,
+    // });
+
     const value = this.http.get(url, {
       headers: headers,
     });
+    
     return value;
   }
 }
