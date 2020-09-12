@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MenuComponent } from "src/app/ProductOrdering/Menu/Menu.component";
+import { CustomerService } from "./Customer.service";
 
 @Component({
   selector: 'app-Customer',
@@ -9,9 +10,16 @@ import { MenuComponent } from "src/app/ProductOrdering/Menu/Menu.component";
 export class CustomerComponent implements OnInit {
   @ViewChild(MenuComponent, { static: true }) menuChild: MenuComponent;
 
-  constructor() { }
+  constructor(
+    public restApi: CustomerService
+  ) { }
 
   ngOnInit() {
+    this.LoadBaseData();
   }
 
+  LoadBaseData() {
+    this.restApi.getAllCustomers().subscribe((data) => {
+    });
+  }
 }
