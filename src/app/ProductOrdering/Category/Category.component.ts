@@ -19,6 +19,7 @@ import { SESSION_STORAGE, WebStorageService } from 'angular-webstorage-service';
 // import { LoggedInUser } from "src/app/HSE/Authentication/LoggedInUser";
 import { Router } from '@angular/router';
 import { MenuComponent } from 'src/app/ProductOrdering/Menu/Menu.component';
+import { GlobalServicesService } from 'src/app/GlobalServices.service';
 
 declare var $: any;
 
@@ -39,11 +40,10 @@ export class CategoryComponent implements OnInit {
 
   constructor(
     private router: Router,
+    public globalService: GlobalServicesService,
     // private confirmationService: ConfirmationService,
-    public restApi: CategoryService // public globalService: GlobalServiceService, // private messageService: MessageService,
-  ) // public dialogService: DialogService,
-  // @Inject(SESSION_STORAGE) private storage: WebStorageService
-  {}
+    public restApi: CategoryService // public globalService: GlobalServiceService, // private messageService: MessageService, // public dialogService: DialogService, // @Inject(SESSION_STORAGE) private storage: WebStorageService
+  ) {}
 
   CategoryList: any = [];
 
@@ -57,8 +57,14 @@ export class CategoryComponent implements OnInit {
 
   selectedCategory2: Category;
 
+  newCategoryData: Category;
+  editCategoryData: Category;
+
   gridCols: any = [];
   exportColumns: any = [];
+
+  showInsertDialog: boolean = false;
+  showEditDialog: boolean = false;
 
   ngOnInit() {
     this.gridCols = [
@@ -79,7 +85,7 @@ export class CategoryComponent implements OnInit {
     // debugger;
     this.restApi.getAllCategoryData().subscribe((data: Category[]) => {
       // this.flushData();
-      debugger;
+      // debugger;
       this.CategoryList = [];
 
       this.CategoryList = data;
@@ -88,36 +94,29 @@ export class CategoryComponent implements OnInit {
     });
   }
 
-  // exportPdf() {
-  //   import('jspdf').then((jsPDF) => {
-  //     import('jspdf-autotable').then((x) => {
-  //       const doc = new jsPDF.default(0, 0);
-  //       doc.autoTable(this.exportColumns, this.CategoryList);
-  //       doc.save('Category.pdf');
-  //     });
-  //   });
-  // }
+  exportPdf() {
+    this.globalService.exportPdf(
+      this.exportColumns,
+      this.CategoryList,
+      'Category.pdf'
+    );
+  }
 
   exportExcel() {
-    import('xlsx').then((xlsx) => {
-      const worksheet = xlsx.utils.json_to_sheet(this.CategoryList);
-      const workbook = { Sheets: { data: worksheet }, SheetNames: ['data'] };
-      const excelBuffer: any = xlsx.write(workbook, {
-        bookType: 'xlsx',
-        type: 'array',
-      });
-      this.saveAsExcelFile(excelBuffer, 'Category');
-    });
+    this.globalService.exportExcel(this.CategoryList, 'Category');
   }
-  
-    saveAsExcelFile(buffer: any, fileName: string): void {
-        import("file-saver").then(FileSaver => {
-            let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
-            let EXCEL_EXTENSION = '.xlsx';
-            const data: Blob = new Blob([buffer], {
-                type: EXCEL_TYPE
-            });
-            FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
-        });
-    }
+
+  //this function is used to show the modal dialog to insert a new contractor.
+  showDialogToAdd() {
+    // this.flushData();
+
+    this.newCategoryData = {
+      categoryid: 0,
+      categoryname: '',
+      description: '',
+    };
+
+    this.showInsertDialog = true;
+    // this.dateValue = new Date();
+  }
 }
