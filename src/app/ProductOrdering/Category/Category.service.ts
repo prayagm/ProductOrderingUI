@@ -9,15 +9,15 @@ export class CategoryService {
 
   baseURL = AppConstant.BaseServiceURL;
 
-  GetESRecordApiURL = this.baseURL + '/' ;//+ AppConstant.GetESReportData;
+  GetCategoryRecordApiURL = this.baseURL + '/' + AppConstant.GetCategoryData;
 
   constructor(private http: HttpClient) {}
 
-  getAllCategoryData(studyType: string) {
+  getAllCategoryData() {
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
 
-    var url = this.GetESRecordApiURL + '/' + studyType;
+    var url = this.GetCategoryRecordApiURL;
 
     const value = this.http.get(url, {
       headers: headers,

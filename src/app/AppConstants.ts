@@ -5,3 +5,6 @@ export const CustomersRoute = "/customers";
 
 //Customers APIs
 export const GetAllCustomers = "/api/Customers/GetAllCustomers";
+
+//Category APIs
+export const GetCategoryData ="";

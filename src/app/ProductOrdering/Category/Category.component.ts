@@ -18,45 +18,50 @@ import { Message } from 'primeng/components/common/api';
 import { SESSION_STORAGE, WebStorageService } from 'angular-webstorage-service';
 // import { LoggedInUser } from "src/app/HSE/Authentication/LoggedInUser";
 import { Router } from '@angular/router';
-import { MenuComponent } from "src/app/ProductOrdering/Menu/Menu.component";
+import { MenuComponent } from 'src/app/ProductOrdering/Menu/Menu.component';
+
+declare var $: any;
 
 @Component({
   selector: 'app-Category',
   templateUrl: './Category.component.html',
   styleUrls: ['./Category.component.css'],
+  // providers: [MessageService, ConfirmationService, DialogService],
 })
 export class CategoryComponent implements OnInit {
   @ViewChild(MenuComponent, { static: true }) menuChild: MenuComponent;
-  
+
   constructor(
-    private router: Router,
-    private confirmationService: ConfirmationService,
-    public restApi: CategoryService,
-    // public globalService: GlobalServiceService,
-    private messageService: MessageService,
-    public dialogService: DialogService,
-    @Inject(SESSION_STORAGE) private storage: WebStorageService
+    // private router: Router,
+    // private confirmationService: ConfirmationService,
+    // public restApi: CategoryService,
+    // // public globalService: GlobalServiceService,
+    // private messageService: MessageService,
+    // public dialogService: DialogService,
+    // @Inject(SESSION_STORAGE) private storage: WebStorageService
   ) {}
 
-  ESReportData: any = [];
-
-  ngOnInit() {}
+  CategoryList: any = [];
 
   showProgressSpinner = true;
 
-  loadESGridData() {
+  ngOnInit() {
+    // debugger;
+    this.loadCategoryGridData()
+
+  }
+
+  loadCategoryGridData() {
     this.showProgressSpinner = true;
+    
+    // this.restApi.getAllCategoryData().subscribe((data: any) => {
+    //   // this.flushData();
+    //   debugger;
+    //   this.CategoryList = [];
 
-    this.restApi
-      .getAllCategoryData('')
-      .subscribe((data: any) => {
-        // this.flushData();
+    //   this.CategoryList = data;
 
-        this.ESReportData = [];
-
-        this.ESReportData = data;
-
-        this.showProgressSpinner = false;
-      });
+    //   this.showProgressSpinner = false;
+    // });
   }
 }
