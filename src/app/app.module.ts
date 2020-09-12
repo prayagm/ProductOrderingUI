@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 
 import { ProgressSpinnerModule } from "primeng/progressspinner";
-import { TableModule } from "primeng/table";
+// import { TableModule } from "primeng/table";
 
 import { HomeComponent } from './ProductOrdering/Home/Home.component';
 import { CustomerComponent } from './ProductOrdering/Customer/Customer.component';
@@ -15,6 +15,8 @@ import { ProductComponent } from './ProductOrdering/Product/Product.component';
 import { CategoryComponent } from './ProductOrdering/Category/Category.component';
 
 import { MenuComponent } from './ProductOrdering/Menu/Menu.component';
+
+import { TableModule } from "primeng/table";
 
 @NgModule({
   declarations: [
@@ -29,8 +31,8 @@ import { MenuComponent } from './ProductOrdering/Menu/Menu.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ProgressSpinnerModule,
     TableModule
+    // ProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

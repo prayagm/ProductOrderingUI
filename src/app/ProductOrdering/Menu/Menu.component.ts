@@ -5,7 +5,7 @@ import { Router } from "@angular/router";
 @Component({
   selector: 'app-Menu',
   templateUrl: './Menu.component.html',
-  styleUrls: ['./Menu.component.scss']
+  styleUrls: ['./Menu.component.css']
 })
 export class MenuComponent implements OnInit {
 
