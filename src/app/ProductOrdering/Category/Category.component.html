@@ -55,7 +55,7 @@
           </p-sortIcon>
         </th>
       </tr>
-      <!-- <tr>
+      <tr>
         <th *ngFor="let col of columns" [ngSwitch]="col.field">
           <input
             *ngSwitchCase="'categoryname'"
@@ -74,14 +74,14 @@
             (input)="dt.filter($event.target.value, col.field, 'contains')"
           />
         </th>
-      </tr> -->
+      </tr>
     </ng-template>
 
     <ng-template pTemplate="body" let-rowData let-columns="columns">
       <tr>
         <td *ngFor="let col of columns" class="wordBreakStyle">
-          <!-- <span class="ui-column-title">{{ col.header }}</span>
-          {{ rowData[col.field] }} -->
+          <span class="ui-column-title">{{ col.header }}</span>
+          {{ rowData[col.field] }}
         </td>
       </tr>
     </ng-template>

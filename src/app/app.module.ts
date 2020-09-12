@@ -5,7 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 
-// import { ProgressSpinnerModule } from "primeng/progressspinner";
+import { ProgressSpinnerModule } from "primeng/progressspinner";
+import { TableModule } from "primeng/table";
 
 import { HomeComponent } from './ProductOrdering/Home/Home.component';
 import { CustomerComponent } from './ProductOrdering/Customer/Customer.component';
@@ -28,7 +29,8 @@ import { MenuComponent } from './ProductOrdering/Menu/Menu.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    // ProgressSpinnerModule
+    ProgressSpinnerModule,
+    TableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

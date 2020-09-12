@@ -40,9 +40,8 @@ export class CategoryComponent implements OnInit {
   constructor(
     private router: Router,
     // private confirmationService: ConfirmationService,
-    public restApi: CategoryService // public globalService: GlobalServiceService,
-  ) // private messageService: MessageService,
-  // public dialogService: DialogService,
+    public restApi: CategoryService // public globalService: GlobalServiceService, // private messageService: MessageService,
+  ) // public dialogService: DialogService,
   // @Inject(SESSION_STORAGE) private storage: WebStorageService
   {}
 
@@ -59,12 +58,18 @@ export class CategoryComponent implements OnInit {
   selectedCategory2: Category;
 
   gridCols: any = [];
+  exportColumns: any = [];
 
   ngOnInit() {
     this.gridCols = [
       { field: 'categoryname', header: 'Category Name' },
       { field: 'description', header: 'Description' },
     ];
+
+    this.exportColumns = this.gridCols.map((col) => ({
+      title: col.header,
+      dataKey: col.field,
+    }));
 
     this.loadCategoryGridData();
   }
@@ -74,7 +79,7 @@ export class CategoryComponent implements OnInit {
     // debugger;
     this.restApi.getAllCategoryData().subscribe((data: Category[]) => {
       // this.flushData();
-      // debugger;
+      debugger;
       this.CategoryList = [];
 
       this.CategoryList = data;
@@ -87,21 +92,32 @@ export class CategoryComponent implements OnInit {
   //   import('jspdf').then((jsPDF) => {
   //     import('jspdf-autotable').then((x) => {
   //       const doc = new jsPDF.default(0, 0);
-  //       doc.autoTable(this.exportColumns, this.products);
-  //       doc.save('products.pdf');
+  //       doc.autoTable(this.exportColumns, this.CategoryList);
+  //       doc.save('Category.pdf');
   //     });
   //   });
   // }
 
-  // exportExcel() {
-  //   import('xlsx').then((xlsx) => {
-  //     const worksheet = xlsx.utils.json_to_sheet(this.products);
-  //     const workbook = { Sheets: { data: worksheet }, SheetNames: ['data'] };
-  //     const excelBuffer: any = xlsx.write(workbook, {
-  //       bookType: 'xlsx',
-  //       type: 'array',
-  //     });
-  //     this.saveAsExcelFile(excelBuffer, 'products');
-  //   });
-  // }
+  exportExcel() {
+    import('xlsx').then((xlsx) => {
+      const worksheet = xlsx.utils.json_to_sheet(this.CategoryList);
+      const workbook = { Sheets: { data: worksheet }, SheetNames: ['data'] };
+      const excelBuffer: any = xlsx.write(workbook, {
+        bookType: 'xlsx',
+        type: 'array',
+      });
+      this.saveAsExcelFile(excelBuffer, 'Category');
+    });
+  }
+  
+    saveAsExcelFile(buffer: any, fileName: string): void {
+        import("file-saver").then(FileSaver => {
+            let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+            let EXCEL_EXTENSION = '.xlsx';
+            const data: Blob = new Blob([buffer], {
+                type: EXCEL_TYPE
+            });
+            FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+        });
+    }
 }
