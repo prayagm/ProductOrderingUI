@@ -15,6 +15,8 @@ import { CategoryComponent } from './ProductOrdering/Category/Category.component
 
 import { MenuComponent } from './ProductOrdering/Menu/Menu.component';
 
+import { TableModule } from "primeng/table";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +30,7 @@ import { MenuComponent } from './ProductOrdering/Menu/Menu.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    TableModule
     // ProgressSpinnerModule
   ],
   providers: [],
