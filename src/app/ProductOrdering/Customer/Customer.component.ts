@@ -29,7 +29,6 @@ export class CustomerComponent implements OnInit {
         if (data.Result[1] == "Success" && data.Result[2] == 200) {
           if (data.Result[0].length > 0) {
             this.CustomerGridData = data.Result[0];
-            debugger;
           }
         }
       }

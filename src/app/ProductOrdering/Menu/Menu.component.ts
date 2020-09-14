@@ -19,4 +19,16 @@ export class MenuComponent implements OnInit {
   goToCustomers() {
     this.router.navigate([AppConstant.CustomersRoute]);
   }
+
+  goToHomePage() {
+    this.router.navigate([AppConstant.HomePageRoute]);
+  }
+
+  goToCategories() {
+    this.router.navigate([AppConstant.CategoriesRoute]);
+  }
+
+  goToProducts() {
+    this.router.navigate([AppConstant.ProductsRoute]);
+  }
 }

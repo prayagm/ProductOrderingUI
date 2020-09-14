@@ -5,4 +5,19 @@
 
   .customersButtonStyle {
     background-color: white;
+    margin-right: 10px;
+  }
+
+  .homeButtonStyle {
+    background-color: white;
+    margin-right: 10px;
+  }
+
+  .categoriesButtonStyle {
+    background-color: white;
+    margin-right: 10px;
+  }
+
+  .productsButtonStyle {
+    background-color: white;
   }

@@ -4,163 +4,177 @@
 
 <div style="margin: 20px;">
   <div class="customerGridDivStyle">
-    <p-table
-      [responsive]="true"
-      [value]="CustomerGridData"
-      [paginator]="true"
-      [rows]="gridPageSize"
-      selectionMode="single"
-      dataKey="CustomerID"
-      #customerGrid
-      [columns]="customerGridCols"
-    >
-      <ng-template pTemplate="caption">
-        <div class="customerGridHeadingStyle">
-          <span>List of Customers</span>
-        </div>
-      </ng-template>
-      <ng-template pTemplate="header" let-columns>
-        <tr>
-          <th style="text-align: center;" [pSortableColumn]="'ContactName'">
-            Contact Name
-            <p-sortIcon
-              [field]="'ContactName'"
-              ariaLabel="Activate to sort"
-              ariaLabelDesc="Activate to sort in descending order"
-              ariaLabelAsc="Activate to sort in ascending order"
-            ></p-sortIcon>
-          </th>
-          <th style="text-align: center;" [pSortableColumn]="'ContactTitle'">
-            Contact Title
-            <p-sortIcon
-              [field]="'ContactTitle'"
-              ariaLabel="Activate to sort"
-              ariaLabelDesc="Activate to sort in descending order"
-              ariaLabelAsc="Activate to sort in ascending order"
-            ></p-sortIcon>
-          </th>
-          <th style="text-align: center;" [pSortableColumn]="'CompanyName'">
-            Company Name
-            <p-sortIcon
-              [field]="'CompanyName'"
-              ariaLabel="Activate to sort"
-              ariaLabelDesc="Activate to sort in descending order"
-              ariaLabelAsc="Activate to sort in ascending order"
-            ></p-sortIcon>
-          </th>
-          <th style="text-align: center;" [pSortableColumn]="'City'">
-            City
-            <p-sortIcon
-              [field]="'City'"
-              ariaLabel="Activate to sort"
-              ariaLabelDesc="Activate to sort in descending order"
-              ariaLabelAsc="Activate to sort in ascending order"
-            ></p-sortIcon>
-          </th>
-          <th style="text-align: center;" [pSortableColumn]="'Region'">
-            Region
-            <p-sortIcon
-              [field]="'Region'"
-              ariaLabel="Activate to sort"
-              ariaLabelDesc="Activate to sort in descending order"
-              ariaLabelAsc="Activate to sort in ascending order"
-            ></p-sortIcon>
-          </th>
-          <th style="text-align: center;" [pSortableColumn]="'PostalCode'">
-            Postal Code
-            <p-sortIcon
-              [field]="'PostalCode'"
-              ariaLabel="Activate to sort"
-              ariaLabelDesc="Activate to sort in descending order"
-              ariaLabelAsc="Activate to sort in ascending order"
-            ></p-sortIcon>
-          </th>
-          <th style="text-align: center;" [pSortableColumn]="'Country'">
-            Country
-            <p-sortIcon
-              [field]="'Country'"
-              ariaLabel="Activate to sort"
-              ariaLabelDesc="Activate to sort in descending order"
-              ariaLabelAsc="Activate to sort in ascending order"
-            ></p-sortIcon>
-          </th>
-          <th style="text-align: center;" [pSortableColumn]="'Phone'">
-            Phone
-            <p-sortIcon
-              [field]="'Phone'"
-              ariaLabel="Activate to sort"
-              ariaLabelDesc="Activate to sort in descending order"
-              ariaLabelAsc="Activate to sort in ascending order"
-            ></p-sortIcon>
-          </th>
-          <th style="text-align: center;" [pSortableColumn]="'CustomerType'">
-            Customer Type
-            <p-sortIcon
-              [field]="'CustomerType'"
-              ariaLabel="Activate to sort"
-              ariaLabelDesc="Activate to sort in descending order"
-              ariaLabelAsc="Activate to sort in ascending order"
-            ></p-sortIcon>
-          </th>
-          <th
-            style="text-align: center; width: 76px;"
-          >
-            Update
-          </th>
-          <th
-            style="text-align: center; width: 71px;"
-          >
-            Delete
-          </th>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-rowData let-columns="columns">
-        <tr>
-          <td>
-            {{ rowData.ContactName }}
-          </td>
-          <td>
-            {{ rowData.ContactTitle }}
-          </td>
-          <td>
-            {{ rowData.CompanyName }}
-          </td>
-          <td>
-            {{ rowData.City }}
-          </td>
-          <td>
-            {{ rowData.Region }}
-          </td>
-          <td>
-            {{ rowData.PostalCode }}
-          </td>
-          <td>
-            {{ rowData.Country }}
-          </td>
-          <td>
-            {{ rowData.Phone }}
-          </td>
-          <td>
-            {{ rowData.CustomerType }}
-          </td>
-          <td style="text-align: center;">
-            <i
-              class="pi pi-check"
-              (click)="updateFacility(rowData)"
-              title="Edit"
-              style="font-size: 2em; cursor: pointer;"
-            ></i>
-          </td>
-          <td style="text-align: center;">
-            <i
-              class="pi pi-check"
-              (click)="deleteFacility(rowData.CustomerId)"
-              title="Delete"
-              style="font-size: 2em; cursor: pointer;"
-            ></i>
-          </td>
-        </tr>
-      </ng-template>
-    </p-table>
+    <div class="customerGridStyle">
+      <p-table
+        [responsive]="true"
+        [value]="CustomerGridData"
+        [paginator]="true"
+        [rows]="gridPageSize"
+        selectionMode="single"
+        dataKey="CustomerID"
+        #customerGrid
+        [columns]="customerGridCols"
+      >
+        <ng-template pTemplate="caption">
+          <div class="customerGridHeadingStyle">
+            <span>List of Customers</span>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th style="text-align: center; width: 90px;" [pSortableColumn]="'SrNo'">
+              Sr.No
+              <p-sortIcon
+                [field]="'SrNo'"
+                ariaLabel="Activate to sort"
+                ariaLabelDesc="Activate to sort in descending order"
+                ariaLabelAsc="Activate to sort in ascending order"
+              ></p-sortIcon>
+            </th>
+            <th style="text-align: center; width: 250px;" [pSortableColumn]="'ContactName'">
+              Contact Name
+              <p-sortIcon
+                [field]="'ContactName'"
+                ariaLabel="Activate to sort"
+                ariaLabelDesc="Activate to sort in descending order"
+                ariaLabelAsc="Activate to sort in ascending order"
+              ></p-sortIcon>
+            </th>
+            <th style="text-align: center; width: 250px;" [pSortableColumn]="'ContactTitle'">
+              Contact Title
+              <p-sortIcon
+                [field]="'ContactTitle'"
+                ariaLabel="Activate to sort"
+                ariaLabelDesc="Activate to sort in descending order"
+                ariaLabelAsc="Activate to sort in ascending order"
+              ></p-sortIcon>
+            </th>
+            <th style="text-align: center; width: 250px;" [pSortableColumn]="'CompanyName'">
+              Company Name
+              <p-sortIcon
+                [field]="'CompanyName'"
+                ariaLabel="Activate to sort"
+                ariaLabelDesc="Activate to sort in descending order"
+                ariaLabelAsc="Activate to sort in ascending order"
+              ></p-sortIcon>
+            </th>
+            <th style="text-align: center; width: 250px;" [pSortableColumn]="'City'">
+              City
+              <p-sortIcon
+                [field]="'City'"
+                ariaLabel="Activate to sort"
+                ariaLabelDesc="Activate to sort in descending order"
+                ariaLabelAsc="Activate to sort in ascending order"
+              ></p-sortIcon>
+            </th>
+            <th style="text-align: center; width: 250px;" [pSortableColumn]="'Region'">
+              Region
+              <p-sortIcon
+                [field]="'Region'"
+                ariaLabel="Activate to sort"
+                ariaLabelDesc="Activate to sort in descending order"
+                ariaLabelAsc="Activate to sort in ascending order"
+              ></p-sortIcon>
+            </th>
+            <th style="text-align: center; width: 250px;" [pSortableColumn]="'PostalCode'">
+              Postal Code
+              <p-sortIcon
+                [field]="'PostalCode'"
+                ariaLabel="Activate to sort"
+                ariaLabelDesc="Activate to sort in descending order"
+                ariaLabelAsc="Activate to sort in ascending order"
+              ></p-sortIcon>
+            </th>
+            <th style="text-align: center; width: 250px;" [pSortableColumn]="'Country'">
+              Country
+              <p-sortIcon
+                [field]="'Country'"
+                ariaLabel="Activate to sort"
+                ariaLabelDesc="Activate to sort in descending order"
+                ariaLabelAsc="Activate to sort in ascending order"
+              ></p-sortIcon>
+            </th>
+            <th style="text-align: center; width: 250px;" [pSortableColumn]="'Phone'">
+              Phone
+              <p-sortIcon
+                [field]="'Phone'"
+                ariaLabel="Activate to sort"
+                ariaLabelDesc="Activate to sort in descending order"
+                ariaLabelAsc="Activate to sort in ascending order"
+              ></p-sortIcon>
+            </th>
+            <th style="text-align: center; width: 250px;" [pSortableColumn]="'CustomerType'">
+              Customer Type
+              <p-sortIcon
+                [field]="'CustomerType'"
+                ariaLabel="Activate to sort"
+                ariaLabelDesc="Activate to sort in descending order"
+                ariaLabelAsc="Activate to sort in ascending order"
+              ></p-sortIcon>
+            </th>
+            <th
+              style="text-align: center; width: 76px;"
+            >
+              Update
+            </th>
+            <th
+              style="text-align: center; width: 71px;"
+            >
+              Delete
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+          <tr>
+            <td style="text-align: center;">
+              {{ rowData.SrNo }}
+            </td>
+            <td>
+              {{ rowData.ContactName }}
+            </td>
+            <td>
+              {{ rowData.ContactTitle }}
+            </td>
+            <td>
+              {{ rowData.CompanyName }}
+            </td>
+            <td>
+              {{ rowData.City }}
+            </td>
+            <td>
+              {{ rowData.Region }}
+            </td>
+            <td>
+              {{ rowData.PostalCode }}
+            </td>
+            <td>
+              {{ rowData.Country }}
+            </td>
+            <td>
+              {{ rowData.Phone }}
+            </td>
+            <td>
+              {{ rowData.CustomerType }}
+            </td>
+            <td style="text-align: center;">
+              <i
+                class="pi pi-check"
+                (click)="updateFacility(rowData)"
+                title="Edit"
+                style="font-size: 2em; cursor: pointer;"
+              ></i>
+            </td>
+            <td style="text-align: center;">
+              <i
+                class="pi pi-trash"
+                (click)="deleteFacility(rowData.CustomerId)"
+                title="Delete"
+                style="font-size: 2em; cursor: pointer;"
+              ></i>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
   </div>
 </div>

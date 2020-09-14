@@ -1,7 +1,11 @@
-.customerGridDivStyle {
+.customerGridStyle {
     width: fit-content;
 }
 
 .customerGridHeadingStyle {
     text-align: left;
+}
+
+.customerGridDivStyle {
+    overflow-x: auto;
 }
